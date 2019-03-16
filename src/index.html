@@ -7,9 +7,62 @@
     <title>Classic components</title>
     <script src="./confirm-link.js"></script>
     <script src="./tooltip.js"></script>
+    <script src="./modal.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            --color-primary: #8ebdc1;
+            --color-important: #ffdfdf;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
 </head>
 <body>
-    <p><classic-tooltip text="Placeholder text for the tooltip">Lorem ipsum ipsum laareo imss</classic-tooltip> ipsum loremus</p>
+    <p>
+        <classic-tooltip class="tooltip-important" text="Placeholder text for the tooltip">
+            <span class="highlight">Lorem ipsum ipsum laareo imss</span>
+        </classic-tooltip>
+        ipsum loremus
+    </p>
+
+    <p>
+        <classic-tooltip text="Placeholder text for the tooltip">
+            <span class="highlight">Lorem ipsum ipsum laareo imss</span>
+        </classic-tooltip>
+        ipsum loremus
+    </p>
+
+    <classic-modal>
+        <h2 slot="title">Modal header</h2>
+        <div slot="content">
+            <p>Modal content</p>
+            <p>lorem ispus lissi roem lorem ispus lissi roem lorem ispus lissi roem lorem ispus lissi roem lorem ispus lissi roem </p>
+        </div>
+    </classic-modal>
+
+    <p>
+        <button class="js-open-modal">Show modal</button>
+    </p>
+
+    <script>
+        const openModalBtn = document.querySelector('.js-open-modal');
+        const modal = document.querySelector('classic-modal');
+        
+        modal.addEventListener('confirm', () => {
+            console.log('confirmed...')
+        });
+
+        modal.addEventListener('cancel', () => {
+            console.log('closed...')
+        });
+
+        openModalBtn.addEventListener('click', () => {
+            modal.open();
+        })
+    </script>
 
     <a is="classic-confirm-link" href="https://www.google.com">Link text</a>
 </body>
